@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results skipped="0" failed="0" ignored="0" total="1" passed="1">
+  <reporter-output>
+  </reporter-output>
+  <suite name="Suite" duration-ms="3811" started-at="2020-02-28T01:22:20 IST" finished-at="2020-02-28T01:22:24 IST">
+    <groups>
+    </groups>
+    <test name="Test" duration-ms="3811" started-at="2020-02-28T01:22:20 IST" finished-at="2020-02-28T01:22:24 IST">
+      <class name="com.apitest.NewTest">
+        <test-method status="PASS" signature="beforeClass()[pri:0, instance:com.apitest.NewTest@1f57539]" name="beforeClass" is-config="true" duration-ms="11" started-at="2020-02-28T01:22:20 IST" finished-at="2020-02-28T01:22:20 IST">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeClass -->
+        <test-method status="PASS" signature="validate200Ok()[pri:0, instance:com.apitest.NewTest@1f57539]" name="validate200Ok" duration-ms="3754" started-at="2020-02-28T01:22:20 IST" finished-at="2020-02-28T01:22:24 IST">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- validate200Ok -->
+        <test-method status="PASS" signature="afterClass()[pri:0, instance:com.apitest.NewTest@1f57539]" name="afterClass" is-config="true" duration-ms="3" started-at="2020-02-28T01:22:24 IST" finished-at="2020-02-28T01:22:24 IST">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- afterClass -->
+      </class> <!-- com.apitest.NewTest -->
+    </test> <!-- Test -->
+  </suite> <!-- Suite -->
+</testng-results>
