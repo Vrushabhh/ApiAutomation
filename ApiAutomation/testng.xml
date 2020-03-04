@@ -2,7 +2,7 @@
 <suite name="Suite" parallel="false">
   <test name="Test">
     <classes>
-      <class name="com.apitest.NewTest"/>
+      <class name="com.apitest.ValidatePasscode"/>
     </classes>
   </test> <!-- Test -->
 </suite> <!-- Suite -->
