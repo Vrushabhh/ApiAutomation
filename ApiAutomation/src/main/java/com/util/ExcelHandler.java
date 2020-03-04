@@ -52,40 +52,6 @@ public class ExcelHandler {
 		fileinputstream.close();
 		return retVal;
 	}
-	
-	// method to get the total number of rows present in a sheet
-		public int getRowNumber(String sheetName, String className) throws InvalidFormatException,IOException {
-			int retVal = 0;			
-			ExcelHandler xlReaderts = new ExcelHandler(excelWorkBook);
-			int countOfCases = xlReaderts.getRowCount(sheetName);
-			for (int counter = 2; counter <= countOfCases; counter++){
-				String tcName = xlReaderts.readFromExcel("testcases", counter, 2);
-				if (tcName.equalsIgnoreCase(className)){
-					retVal = counter;
-				}
-			}
-			return retVal;
-		}
-	
-	public String getObjectFromOR(String object, String clientType) {
-		String returnObject = null;
-		ExcelHandler xlreader = new ExcelHandler("C:/TFS/DSASERVERAUTOMATION/DEV/SAServer/DEV_2.2/ServerAutomation/readables/globalutils.xlsx");
-		try {
-			int numOfObjects = xlreader.getRowCount("utils");
-			for (int obj = 2; obj <= numOfObjects; obj++) {
-				String logicalName = xlreader.readFromExcel("utils", obj, 1);
-				String clientTypeName = xlreader.readFromExcel("utils", obj, 3);
-				if((logicalName.equals(object)) && clientTypeName.equals(clientType)){
-						returnObject = xlreader.readFromExcel("utils", obj, 2);
-						break;
-				}
-			}
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return returnObject;
-	}
 	 
 	// method to write the result back to the excel.
 	public void writeExcelInfo(String sheetName, int rowNum, int colNum,
@@ -243,60 +209,5 @@ public class ExcelHandler {
 			in.close();
 		}
 		
-		public void writeIntoGlobalWorkbookUtils(Map<String, String> data) throws Exception{
-			FileInputStream in = new FileInputStream(excelWorkBook);
-			Workbook wb = WorkbookFactory.create(in);
-			Sheet sheet = wb.getSheet("utils");
-			int lastRow = sheet.getLastRowNum();
-			int resultRow = lastRow + 1;
-			
-			ArrayList<String> headers = getRowData("utils", 1);
-			ArrayList<String> clientList = getColumnData("utils", 3);
-			
-			if(clientList.contains(data.get("Client Type"))){
-				for(int i=0; i<clientList.size(); i++){
-					if(clientList.get(i).equalsIgnoreCase(data.get("Client Type"))){
-						resultRow = i-1;
-						break;
-					}					
-				}
-			}
-			
-			Row row = sheet.createRow(resultRow);
-			Set<String> dataTags = data.keySet();
-			
-			for(String tag: dataTags){
-				for(int j=0; j<headers.size(); j++){
-					if(headers.get(j).equals(tag)){
-						Cell cell = row.createCell(j);
-						cell.setCellType(CellType.STRING);
-						cell.setCellValue(data.get(tag));
-					}
-				}
-			}
-			
-			FileOutputStream fileOut = new FileOutputStream(excelWorkBook);
-			wb.write(fileOut);
-			fileOut.close();
-			in.close();
-		}
 		
-		public void deleteRegistrationIds() throws Exception{
-			FileInputStream in = new FileInputStream(excelWorkBook);
-			Workbook wb = WorkbookFactory.create(in);
-			Sheet sheet = wb.getSheet("utils");
-			int firstRow = sheet.getFirstRowNum();
-			int lastRow = sheet.getLastRowNum();
-			
-			for (int i = firstRow+1; i <= lastRow; i++) {
-				Row row = sheet.getRow(i);
-				Cell cell = row.createCell(1);
-				cell.setCellType(CellType.BLANK);
-			}
-			
-			FileOutputStream fileOut = new FileOutputStream(excelWorkBook);
-			wb.write(fileOut);
-			fileOut.close();
-			in.close();
-		}
 }
